@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const JWT_USER_PASSWORD = require("../config");
+const { JWT_USER_PASSWORD } = require("../config");
 
 function userMiddleware(req, res, next) {
   const token = req.headers.token;
@@ -17,3 +17,6 @@ function userMiddleware(req, res, next) {
 module.exports = {
   userMiddleware: userMiddleware,
 };
+
+
+// course id : 685fcac7483d5a739f4254b5

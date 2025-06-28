@@ -86,7 +86,7 @@ adminRouter.post("/course", adminMiddleware, async function (req, res) {
   });
 });
 
-adminRouter.put("/", adminMiddleware, async function (req, res) {
+adminRouter.put("/course", adminMiddleware, async function (req, res) {
   const adminId = req.userId;
 
   const { title, description, imageUrl, price, courseId } = req.body;
@@ -111,7 +111,7 @@ adminRouter.put("/", adminMiddleware, async function (req, res) {
     courseId: course._id,
   });
 });
-adminRouter.get("/bulk", adminMiddleware, async function (req, res) {
+adminRouter.get("/course/bulk", adminMiddleware, async function (req, res) {
   const adminId = req.userId;
 
   const course = await courseModel.find({
