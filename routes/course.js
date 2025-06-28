@@ -1,6 +1,6 @@
 const { Router } = require("express"); // `
 const { userMiddleware } = require("../middleware/user");
-const { purchaseModel } = require("../db");
+const { purchaseModel, courseModel } = require("../db");
 const courseRouter = Router();
 
 // you would expect the user to pay you the money
