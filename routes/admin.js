@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { JWT_ADMIN_PASSWORD } = require("../config");
 const { adminMiddleware } = require("../middleware/admin");
+const admin = require("../middleware/admin");
 
 adminRouter.post("/signup", async function (req, res) {
   const { email, password, firstName, lastName } = req.body;
@@ -84,14 +85,42 @@ adminRouter.post("/course", adminMiddleware, async function (req, res) {
     courseId: course._id,
   });
 });
-adminRouter.put("/", function (req, res) {
+
+adminRouter.put("/", adminMiddleware, async function (req, res) {
+  const adminId = req.userId;
+
+  const { title, description, imageUrl, price, courseId } = req.body;
+
+  // creating a web3 saas in 6 hourse where you will find how to give image url not actual image file
+
+  const course = await courseModel.updateOne(
+    {
+      _id: courseId,
+      creatorId: adminId,
+    },
+    {
+      title: title,
+      description: description,
+      imageUrl: imageUrl,
+      price: price,
+    }
+  );
+
   res.json({
-    message: "signup endpoint",
+    message: "Course updated",
+    courseId: course._id,
   });
 });
-adminRouter.get("/bulk", function (req, res) {
+adminRouter.get("/bulk", adminMiddleware, async function (req, res) {
+  const adminId = req.userId;
+
+  const course = await courseModel.find({
+    creatorId: adminId,
+  });
+
   res.json({
-    message: "signup endpoint",
+    message: "Course updated",
+    courses,
   });
 });
 
