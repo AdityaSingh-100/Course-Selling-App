@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-
-
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -35,7 +33,7 @@ const adminModel = mongoose.model("admin", adminSchema);
 const courseModel = mongoose.model("course", courseSchema);
 const purchaseModel = mongoose.model("purchase", purchaseSchema);
 
-module.export = {
+module.exports = {
   userModel,
   adminModel,
   courseModel,
